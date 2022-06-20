@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Carbon\Carbon;
+use App\Enum\ProductEnum;
 use Illuminate\Http\Request;
 use App\Helpers\CouponHelper;
 use App\Contracts\ICouponRepository;
@@ -56,14 +57,14 @@ class CheckCouponController extends Controller
             ), 404);
         }
 
-        if ($product->coupon->expire_time > Carbon::now()) {
+        if ($product->coupon->type == ProductEnum::ONE && $product->coupon->expire_time > Carbon::now()) {
             return Response::json(array(
                 'code'      =>  400,
                 'errors'   =>  ['coupon' => ['Ezt a kupon csak 1 perc múlva használhatod fel újra']]
             ), 400);
         }
 
-        if ($product->coupon->type == 'custom') {
+        if ($product->coupon->type == ProductEnum::CUSTOM) {
             $product->coupon()->update([
                 'code' => CouponHelper::generateCouponCode(),
                 'expire_time' => Carbon::now()->addMinute()

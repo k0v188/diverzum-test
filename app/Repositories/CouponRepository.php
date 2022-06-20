@@ -20,7 +20,7 @@ class CouponRepository implements ICouponRepository
 
     public function getAllActivatedCoupon(): Collection
     {
-        return ActivatedCoupon::all();
+        return ActivatedCoupon::get()->sortByDesc('created_at');
     }
 
     public function store(CouponRequest $request): Coupon
@@ -47,8 +47,10 @@ class CouponRepository implements ICouponRepository
     public function activate(Coupon $coupon, Product $product)
     {
         ActivatedCoupon::create([
-            'coupon_id' => $coupon->id,
-            'product_id' => $product->id
+            'code' => $coupon->code,
+            'company_name' => $product->company_name,
+            'name' => $product->name,
+            'discount' => $coupon->discount,
         ]);
     }
 

@@ -15,12 +15,11 @@ class CreateActivatedCouponsTable extends Migration
     {
         Schema::create('activated_coupons', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('coupon_id')->nullable();
-            $table->unsignedBigInteger('product_id')->nullable();
+            $table->string('code');
+            $table->string('company_name');
+            $table->string('name');
+            $table->string('discount');
             $table->timestamps();
-
-            $table->foreign('coupon_id')->on('coupons')->references('id');
-            $table->foreign('product_id')->on('products')->references('id');
         });
     }
 
