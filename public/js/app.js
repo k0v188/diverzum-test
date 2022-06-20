@@ -2789,6 +2789,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "HomePage",
@@ -2800,7 +2803,6 @@ __webpack_require__.r(__webpack_exports__);
       dialog: false,
       coupon: "",
       errors: [],
-      error: "",
       selectedProduct: null,
       success: false
     };
@@ -2818,6 +2820,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     selectProduct: function selectProduct(product) {
+      this.errors = [];
       this.success = false;
 
       if (!product.coupon) {
@@ -2831,7 +2834,6 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       this.errors = [];
-      this.error = "";
       var data = {
         coupon: this.coupon,
         product_id: this.selectedProduct.id
@@ -2842,11 +2844,7 @@ __webpack_require__.r(__webpack_exports__);
 
         _this2.initialize();
       })["catch"](function (errors) {
-        if (errors.response.data.errors) {
-          _this2.errors = errors.response.data.errors;
-        } else {
-          _this2.error = errors.response.data.message;
-        }
+        _this2.errors = errors.response.data.errors;
       }).then(function () {
         _this2.coupon = "";
       });
@@ -42182,7 +42180,9 @@ var render = function () {
     "v-container",
     [
       _c("h3", { staticClass: "text-center my-3" }, [
-        _vm._v("Percenként az adott kupont csak 1x használhatod fel!"),
+        _vm._v(
+          "\n        Percenként az adott kupont csak 1x használhatod fel!\n    "
+        ),
       ]),
       _vm._v(" "),
       _c(
@@ -42207,7 +42207,12 @@ var render = function () {
                   }),
                   _vm._v(" "),
                   _c("v-card-title", [
-                    _c("strong", [_vm._v(" " + _vm._s(product.company_name))]),
+                    _c("strong", [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(product.company_name)
+                      ),
+                    ]),
                   ]),
                   _vm._v(" "),
                   _c("v-card-title", { staticClass: "pt-0" }, [
@@ -42336,22 +42341,6 @@ var render = function () {
                         ],
                         1
                       ),
-                      _vm._v(" "),
-                      _vm.error != ""
-                        ? _c(
-                            "v-alert",
-                            {
-                              attrs: { dense: "", outlined: "", type: "error" },
-                            },
-                            [
-                              _vm._v(
-                                "\n                        " +
-                                  _vm._s(_vm.error) +
-                                  "\n                    "
-                              ),
-                            ]
-                          )
-                        : _vm._e(),
                       _vm._v(" "),
                       _vm.success != ""
                         ? _c(

@@ -45,21 +45,21 @@ class CheckCouponController extends Controller
         if (!$product->coupon->active) {
             return Response::json(array(
                 'code'      =>  400,
-                'message'   =>  'Ez a kupon már nem érvényes'
+                'errors'   =>  ['coupon' => ['Ez a kupon már nem érvényes']]
             ), 400);
         }
 
         if ($product->coupon->code != $request->coupon) {
             return Response::json(array(
                 'code'      =>  404,
-                'message'   =>  'A kuponkód nem található'
+                'errors'   =>  ['coupon' => ['A kuponkód nem található']]
             ), 404);
         }
 
         if ($product->coupon->expire_time > Carbon::now()) {
             return Response::json(array(
                 'code'      =>  400,
-                'message'   =>  'Ezt a kupon csak 1 perc múlva használhatod fel újra'
+                'errors'   =>  ['coupon' => ['Ezt a kupon csak 1 perc múlva használhatod fel újra']]
             ), 400);
         }
 

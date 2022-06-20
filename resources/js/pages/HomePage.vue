@@ -1,6 +1,8 @@
 <template>
     <v-container>
-        <h3 class="text-center my-3">Percenként az adott kupont csak 1x használhatod fel!</h3>
+        <h3 class="text-center my-3">
+            Percenként az adott kupont csak 1x használhatod fel!
+        </h3>
         <v-row>
             <v-col
                 cols="12"
@@ -20,7 +22,11 @@
                         src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
                     ></v-img>
 
-                    <v-card-title> <strong> {{ product.company_name }}</strong></v-card-title>
+                    <v-card-title>
+                        <strong>
+                            {{ product.company_name }}</strong
+                        ></v-card-title
+                    >
 
                     <v-card-title class="pt-0">{{ product.name }}</v-card-title>
 
@@ -70,9 +76,6 @@
                                 ></v-text-field>
                             </v-col>
                         </v-row>
-                        <v-alert dense outlined type="error" v-if="error != ''">
-                            {{ error }}
-                        </v-alert>
                         <v-alert dense text type="success" v-if="success != ''">
                             A kupon beváltásra került
                         </v-alert>
@@ -124,7 +127,6 @@ export default {
         dialog: false,
         coupon: "",
         errors: [],
-        error: "",
         selectedProduct: null,
         success: false,
     }),
@@ -142,6 +144,7 @@ export default {
         },
 
         selectProduct(product) {
+            this.errors = [];
             this.success = false;
             if (!product.coupon) {
                 window.open(product.company_url, "_blank").focus();
@@ -153,7 +156,6 @@ export default {
 
         checkCoupon() {
             this.errors = [];
-            this.error = "";
             let data = {
                 coupon: this.coupon,
                 product_id: this.selectedProduct.id,
@@ -165,13 +167,9 @@ export default {
                     this.initialize();
                 })
                 .catch((errors) => {
-                    if (errors.response.data.errors) {
-                        this.errors = errors.response.data.errors;
-                    } else {
-                        this.error = errors.response.data.message;
-                    }
-
-                }).then(() => {
+                    this.errors = errors.response.data.errors;
+                })
+                .then(() => {
                     this.coupon = "";
                 });
         },
