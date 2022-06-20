@@ -18,5 +18,6 @@ Route::apiResource('coupons', CouponController::class);
 Route::apiResource('products', ProductController::class);
 
 Route::post('/check', CheckCouponController::class);
+Route::get('/activated-coupons', ActivatedCouponController::class);
 
 

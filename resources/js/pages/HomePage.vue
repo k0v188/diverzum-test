@@ -170,6 +170,9 @@ export default {
                     } else {
                         this.error = errors.response.data.message;
                     }
+
+                }).then(() => {
+                    this.coupon = "";
                 });
         },
     },

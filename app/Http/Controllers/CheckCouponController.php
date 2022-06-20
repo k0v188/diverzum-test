@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Helpers\CouponHelper;
+use App\Contracts\ICouponRepository;
 use App\Contracts\IProductRepository;
 use Illuminate\Support\Facades\Response;
 use App\Http\Requests\CheckCouponRequest;
@@ -18,9 +19,17 @@ class CheckCouponController extends Controller
      */
     private $productRepository;
 
-    public function __construct(IProductRepository $productRepository)
+    /**
+     * Coupon repository
+     *
+     * @var ICouponRepository
+     */
+    private $couponRepository;
+
+    public function __construct(IProductRepository $productRepository, ICouponRepository $couponRepository)
     {
         $this->productRepository = $productRepository;
+        $this->couponRepository = $couponRepository;
     }
 
     /**
@@ -64,6 +73,8 @@ class CheckCouponController extends Controller
                 'expire_time' => Carbon::now()->addMinute()
             ]);
         }
+
+        $this->couponRepository->activate($product->coupon, $product);
 
         return Response::json(array(
             'code'      =>  200,

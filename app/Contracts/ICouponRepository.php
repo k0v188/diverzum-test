@@ -3,6 +3,7 @@
 namespace App\Contracts;
 
 use App\Models\Coupon;
+use App\Models\Product;
 use App\Http\Requests\CouponRequest;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -16,6 +17,13 @@ interface ICouponRepository
      * @return Collection
      */
     public function getAll(): Collection;
+
+    /**
+     * Get all coupon
+     *
+     * @return Collection
+     */
+    public function getAllActivatedCoupon(): Collection;
 
     /**
      * Store coupon
@@ -40,6 +48,14 @@ interface ICouponRepository
      * @param Coupon
      */
     public function delete(Coupon $coupon);
+
+    /**
+     * activate specific coupon
+     *
+     * @param Coupon
+     * @param Product
+     */
+    public function activate(Coupon $coupon, Product $product);
 
 
 }

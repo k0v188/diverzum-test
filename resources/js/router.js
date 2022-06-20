@@ -5,6 +5,7 @@ import HomePage from './pages/HomePage.vue';
 import SettingsPage from './pages/settings/SettingsPage.vue';
 import SettingsCouponsPage from './pages/settings/CouponsPage.vue'
 import SettingsProductsPage from './pages/settings/ProductsPage.vue'
+import SettingsActivatedCouponsPage from './pages/settings/ActivatedCouponsPage.vue'
 
 Vue.use(VueRouter);
 
@@ -17,6 +18,7 @@ const router = new VueRouter({
         {name: 'settings', path: '/settings', component: SettingsPage, children: [
             {name: 'settings-products', path: '/products', component: SettingsProductsPage},
             {name: 'settings-coupons', path: '/coupons', component: SettingsCouponsPage},
+            {name: 'settings-activated-coupons', path: '/activated-coupons', component: SettingsActivatedCouponsPage},
         ]},
 
     ]

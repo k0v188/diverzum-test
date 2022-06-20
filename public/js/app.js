@@ -2847,6 +2847,93 @@ __webpack_require__.r(__webpack_exports__);
         } else {
           _this2.error = errors.response.data.message;
         }
+      }).then(function () {
+        _this2.coupon = "";
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/settings/ActivatedCouponsPage.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/settings/ActivatedCouponsPage.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mixins_api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../mixins/api */ "./resources/js/mixins/api.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  mixins: [_mixins_api__WEBPACK_IMPORTED_MODULE_0__["default"]],
+  name: "SettingsActivatedCouponsPage",
+  data: function data() {
+    return {
+      dialog: false,
+      dialogDelete: false,
+      totalCount: 1,
+      loading: true,
+      options: {},
+      headers: [{
+        text: "Kód",
+        align: "start",
+        sortable: false,
+        value: "code"
+      }, {
+        text: "Márkanév",
+        value: "company_name",
+        sortable: false
+      }, {
+        text: "Terméknév",
+        value: "name",
+        sortable: false
+      }, {
+        text: "Kedzemény",
+        value: "discount",
+        sortable: false
+      }, {
+        text: "Aktiválva",
+        value: "created_at",
+        sortable: false
+      }],
+      coupons: []
+    };
+  },
+  created: function created() {
+    this.initialize();
+  },
+  methods: {
+    initialize: function initialize() {
+      var _this = this;
+
+      this.get("api/activated-coupons").then(function (response) {
+        _this.coupons = response;
+        _this.loading = false;
       });
     }
   }
@@ -3438,6 +3525,11 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
 //
 //
 //
@@ -42361,6 +42453,75 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/settings/ActivatedCouponsPage.vue?vue&type=template&id=0b1405c4&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/settings/ActivatedCouponsPage.vue?vue&type=template&id=0b1405c4&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("v-data-table", {
+    staticClass: "elevation-1",
+    attrs: {
+      headers: _vm.headers,
+      items: _vm.coupons,
+      "server-items-length": _vm.totalCount,
+      loading: _vm.loading,
+      "hide-default-footer": true,
+    },
+    scopedSlots: _vm._u(
+      [
+        {
+          key: "top",
+          fn: function () {
+            return [
+              _c(
+                "v-toolbar",
+                { attrs: { flat: "" } },
+                [
+                  _c("v-toolbar-title", [_vm._v("Aktivált kuponok")]),
+                  _vm._v(" "),
+                  _c("v-divider", {
+                    staticClass: "mx-4",
+                    attrs: { inset: "", vertical: "" },
+                  }),
+                  _vm._v(" "),
+                  _c("v-spacer"),
+                ],
+                1
+              ),
+            ]
+          },
+          proxy: true,
+        },
+        {
+          key: "item.discount",
+          fn: function (ref) {
+            var item = ref.item
+            return [_c("span", [_vm._v(" " + _vm._s(item.discount) + " % ")])]
+          },
+        },
+      ],
+      null,
+      true
+    ),
+  })
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/settings/CouponsPage.vue?vue&type=template&id=eac673ce&scoped=true&":
 /*!******************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/pages/settings/CouponsPage.vue?vue&type=template&id=eac673ce&scoped=true& ***!
@@ -43220,6 +43381,24 @@ var render = function () {
                           _c(
                             "v-list-item-content",
                             [_c("v-list-item-title", [_vm._v("Termékek")])],
+                            1
+                          ),
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "v-list-item",
+                        {
+                          attrs: {
+                            link: "",
+                            to: { name: "settings-activated-coupons" },
+                          },
+                        },
+                        [
+                          _c(
+                            "v-list-item-content",
+                            [_c("v-list-item-title", [_vm._v("Aktiválások")])],
                             1
                           ),
                         ],
@@ -105284,6 +105463,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/pages/settings/ActivatedCouponsPage.vue":
+/*!**************************************************************!*\
+  !*** ./resources/js/pages/settings/ActivatedCouponsPage.vue ***!
+  \**************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _ActivatedCouponsPage_vue_vue_type_template_id_0b1405c4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ActivatedCouponsPage.vue?vue&type=template&id=0b1405c4&scoped=true& */ "./resources/js/pages/settings/ActivatedCouponsPage.vue?vue&type=template&id=0b1405c4&scoped=true&");
+/* harmony import */ var _ActivatedCouponsPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ActivatedCouponsPage.vue?vue&type=script&lang=js& */ "./resources/js/pages/settings/ActivatedCouponsPage.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _ActivatedCouponsPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _ActivatedCouponsPage_vue_vue_type_template_id_0b1405c4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _ActivatedCouponsPage_vue_vue_type_template_id_0b1405c4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "0b1405c4",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/pages/settings/ActivatedCouponsPage.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/pages/settings/ActivatedCouponsPage.vue?vue&type=script&lang=js&":
+/*!***************************************************************************************!*\
+  !*** ./resources/js/pages/settings/ActivatedCouponsPage.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ActivatedCouponsPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./ActivatedCouponsPage.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/settings/ActivatedCouponsPage.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ActivatedCouponsPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/pages/settings/ActivatedCouponsPage.vue?vue&type=template&id=0b1405c4&scoped=true&":
+/*!*********************************************************************************************************!*\
+  !*** ./resources/js/pages/settings/ActivatedCouponsPage.vue?vue&type=template&id=0b1405c4&scoped=true& ***!
+  \*********************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ActivatedCouponsPage_vue_vue_type_template_id_0b1405c4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./ActivatedCouponsPage.vue?vue&type=template&id=0b1405c4&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/pages/settings/ActivatedCouponsPage.vue?vue&type=template&id=0b1405c4&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ActivatedCouponsPage_vue_vue_type_template_id_0b1405c4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ActivatedCouponsPage_vue_vue_type_template_id_0b1405c4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/pages/settings/CouponsPage.vue":
 /*!*****************************************************!*\
   !*** ./resources/js/pages/settings/CouponsPage.vue ***!
@@ -105543,6 +105791,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _pages_settings_SettingsPage_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pages/settings/SettingsPage.vue */ "./resources/js/pages/settings/SettingsPage.vue");
 /* harmony import */ var _pages_settings_CouponsPage_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./pages/settings/CouponsPage.vue */ "./resources/js/pages/settings/CouponsPage.vue");
 /* harmony import */ var _pages_settings_ProductsPage_vue__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./pages/settings/ProductsPage.vue */ "./resources/js/pages/settings/ProductsPage.vue");
+/* harmony import */ var _pages_settings_ActivatedCouponsPage_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/settings/ActivatedCouponsPage.vue */ "./resources/js/pages/settings/ActivatedCouponsPage.vue");
+
 
 
 
@@ -105571,6 +105821,10 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
       name: 'settings-coupons',
       path: '/coupons',
       component: _pages_settings_CouponsPage_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
+    }, {
+      name: 'settings-activated-coupons',
+      path: '/activated-coupons',
+      component: _pages_settings_ActivatedCouponsPage_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
     }]
   }]
 });

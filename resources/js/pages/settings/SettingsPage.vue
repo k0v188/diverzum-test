@@ -15,6 +15,11 @@
                                 <v-list-item-title>Termékek</v-list-item-title>
                             </v-list-item-content>
                         </v-list-item>
+                        <v-list-item link :to="{ name: 'settings-activated-coupons' }">
+                            <v-list-item-content>
+                                <v-list-item-title>Aktiválások</v-list-item-title>
+                            </v-list-item-content>
+                        </v-list-item>
                     </v-list>
 
                 </v-card>
